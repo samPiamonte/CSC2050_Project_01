@@ -23,15 +23,11 @@ test_number=0
 passed=0
 failed=0
 
-total_tests=$(grep -v -e '^[[:space:]]*#' -e '^[[:space:]]*$' "$test_file" | awk 'END {print
-NR}')
+total_tests=$(grep -v -e '^[[:space:]]*#' -e '^[[:space:]]*$' "$test_file" | awk 'END {print NR}')
 grep -v -e '^[[:space:]]*#' -e '^[[:space:]]*$' "$test_file" |
 while read -r line; do
-
-	argument=$(echo "$line" | awk -F '|' '{print $1}' | sed
-'s/^[[:space:]]*//;s/[[:space:]]*$//')
-	expected=$(echo "$line" | awk -F '|' '{print $2}' | sed
-'s/^[[:space:]]*//;s/[[:space:]]*$//')
+	argument=$(echo "$line" | awk -F '|' '{print $1}' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+	expected=$(echo "$line" | awk -F '|' '{print $2}' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 
 	actual=$("$program" "$argument")
 # YOU SHOULD COMPLETE THIS SECTION OF THE WHILE LOOP
